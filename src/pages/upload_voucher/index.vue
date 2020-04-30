@@ -50,7 +50,7 @@ export default {
     afterRead(file) {
       console.log(file.file)
       let fromData = new FormData()
-      fromData.append('order_id', 1)
+      fromData.append('order_id', 30)
       fromData.append('img', file.file)
       this.$post('/orders/pay-proof', fromData).then(res => {
         console.log(res)
