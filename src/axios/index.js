@@ -5,6 +5,7 @@ let CancelToken = axios.CancelToken //取消请求
 
 axios.defaults.withCredentials = true
 
+console.log(process.env.VUE_APP_BASE_API);
 
 axios.defaults.baseURL = process.env.VUE_APP_BASE_API
 

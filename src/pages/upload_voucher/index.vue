@@ -48,13 +48,17 @@ export default {
 
   methods: {
     afterRead(file) {
-      console.log(this.file)
+      console.log(file.file)
       let fromData = new FormData()
-      fromData.append('img', file)
-      this.$post('/api/upload-img', fromData).then(res => {
+      fromData.append('order_id', 1)
+      fromData.append('img', file.file)
+      this.$post('/orders/pay-proof', fromData).then(res => {
         console.log(res)
       }, err => { })
     },
+    add() {
+
+    }
   },
 
   created() { },
