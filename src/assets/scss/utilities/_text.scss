@@ -1,0 +1,64 @@
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+// 文本超出隐藏
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hover-text {
+  position: relative;
+
+  &:hover::before {
+    content: attr(data-msg);
+    width: max-content;
+    position: absolute;
+    bottom: -24px;
+    left: 4px;
+    padding: 3px 5px;
+    max-height: 20px;
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 400;
+    display: block;
+    color: rgba(51, 51, 51, 1);
+    background: rgba(241, 241, 241, 1);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+    border: 1px solid rgba(207, 207, 207, 1);
+    z-index: 1;
+  }
+}
+
+@each $val in $ui-paddings-values {
+  .line-height-#{$val} {
+    line-height: $val;
+  }
+}

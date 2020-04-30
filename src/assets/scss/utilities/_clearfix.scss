@@ -1,0 +1,15 @@
+.clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+.fl-right {
+  float: right;
+}
+
+.fl-left {
+  float: left;
+}

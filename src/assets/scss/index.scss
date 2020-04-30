@@ -1,0 +1,82 @@
+@import "reset";
+@import "utilities/index";
+
+// 文本不换行
+.nowrap {
+  white-space: nowrap;
+}
+
+.word-break-all {
+  word-break: break-all;
+}
+
+// 文本超出隐藏
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.font-400 {
+  font-weight: 400;
+}
+
+.font-500 {
+  font-weight: 500;
+}
+
+.font-700 {
+  font-weight: 700;
+}
+
+.modal .modal-wrap {
+  height: 100%;
+  margin: 6.75rem auto;
+}
+
+.modal .modal-wrap .modal-content {
+  max-height: 83%;
+
+}
+
+.modal .modal-wrap .modal-content .modal-body {
+  overflow-y: scroll;
+}
+
+.bg-contain {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  height: auto;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    vertical-align: top;
+  }
+
+  .img {
+    height: auto;
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100%;
+    opacity: 1;
+    transition: opacity 0.8s;
+  }
+}

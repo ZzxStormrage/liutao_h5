@@ -1,0 +1,25 @@
+.tag {
+    display: inline-block;
+    color: $white;
+    line-height: 22px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background-color: $c;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    &.cp {
+        cursor: pointer;
+    }
+    &.border-2px {
+        border-radius: 2px;
+    }
+    &.tag-sm {
+        line-height: 18px;
+        font-size: 12px;
+    }
+    &.tag-bg {
+        font-size: 16px;
+        padding: 12px 30px;
+        border-radius: 30px;
+    }
+}

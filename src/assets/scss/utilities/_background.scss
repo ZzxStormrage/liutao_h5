@@ -1,0 +1,23 @@
+// 背景颜色
+@each $color,
+$val in $theme-colors {
+  .bg-#{$color} {
+    background-color: $val
+  }
+}
+
+@mixin set-background {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bg-loading {
+  background-image: url('../img/loading.svg');
+  @include set-background();
+}
+
+.bg-m-loading {
+  background-image: url('../img/loading.svg');
+  @include set-background();
+}
