@@ -24,6 +24,14 @@
    </div>
 
 
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+
+      <van-list
+        v-model="isUpLoading"
+        :finished="upFinished"
+        @load="onLoad"
+        :offset="offset"
+      >
 <div class="All_complete">
   <div v-for="(item,index) in datalistAD" :key="index" class="commodity">
     <!--商品图片-->
@@ -55,6 +63,12 @@
 
   </div>
 </div>
+
+
+      </van-list>
+    </van-pull-refresh>
+
+
 
   </div>
 </template>
@@ -97,13 +111,56 @@
             view_details: 5
           }
         ],
-        Asvnct:""
+        Asvnct:"",
+        datalist:['a','b','c','d','e','f','g','h','j','k','l','y'],//自己定义的数组，里面存放数据，用于v-for循环
+        datacontent:[], //空数组，用来储存循环出来的内容，因为没有造假数据，所以就反复循环这个数组里的内容了
+        isLoading: false,//下拉刷新
+        isUpLoading:false,//下拉加载
+        upFinished:false,
+        offset:100,
       }
     },
     methods:{
       all_complete(i){
        this.Astavz =i
-      }
+      },
+      onRefresh() { // 下拉调用此函数
+        setTimeout(() => {
+          this.$toast('刷新成功');  //弹出
+          this.isLoading = false;
+        }, 500);
+      },
+      onLoad () { // 上拉调用此函数
+        setTimeout(() => {
+          this.$toast('加载成功');//弹出
+          this.isUpLoading = false;
+          let dataa = this.datalist
+          for (var i = 1; i < dataa.length; i++) {
+            this.datacontent.push(dataa[i]) // 上拉时循环出来这个数组的三条内容，放入datacontent这个数组里，那样就一直拉一直加
+            console.log(this.datacontent)
+          }
+        }, 500);
+
+        // 加载完成时底部提示加载完成，禁止上拉加载。延迟器是为了避免和加载中同时执行
+
+
+        setTimeout(() => {
+
+          if (this.datacontent.length >=5) {
+
+            this.upFinished = true;
+
+          } else {
+
+            this.upFinished = false;
+
+          }
+
+        }, 1000);
+
+      },
+
+
     }
   }
 </script>
@@ -113,7 +170,6 @@
     .Order_Goods {
       width: 100%;
       height: 7rem;
-      border: solid 1px black;
       background: #0D8470;
       color: #ffffff;
 
@@ -176,7 +232,6 @@
 
           .product_name {
             width: 100%;
-            height: 33%;
             font-weight: 600;
             display: flex;
             justify-content: space-between;

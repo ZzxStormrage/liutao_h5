@@ -1,67 +1,74 @@
 <template>
   <div>
-    <!--biao ti-->
-    <div class="subject">
-      <div class="get_back"><van-icon name="arrow-left" size="30" /></div>
-      <div class="regist">{{ register }}</div>
-    </div>
 
-    <div class="ReGTForm">
-      <van-form @submit="onSubmit">
-        <van-field
-          v-model="username"
-          name="用户名"
-          left-icon="manager-o"
-          placeholder="请输入名称"
-          :rules="[{ required: true, message: '请填写用户名' }]"
-        />
-        <van-field
-          v-model="password"
-          type="password"
-          name="密码"
-          left-icon="phone-o"
-          placeholder="请输入手机号"
-          :rules="[{ required: true, message: '请填写密码' }]"
-        />
-        <div class="validation">
-          <div class="verify">
-            <van-cell-group>
-              <van-field
-                left-icon="sign"
-                v-model="value"
-                placeholder="请输入验证码"
-              />
-            </van-cell-group>
-          </div>
-          <div class="obtain">
-            获取验证码
-          </div>
-        </div>
-        <div class="privacy">
-          <div class="pr-vay">
-            <van-icon name="checked" color="#0D8470" />
-          </div>
-          <div class="reading">请认真阅读 <span>《隐私政策》</span></div>
-        </div>
 
-        <div style="margin-top: 16px;">
-          <van-button round block type="info" native-type="submit">
-            注册
-          </van-button>
-        </div>
-      </van-form>
-    </div>
+      <!--注册-->
+      <div class="subject">
+        <div class="get_back"><van-icon name="arrow-left" size="30" /></div>
+        <div class="regist">{{ register }}</div>
+      </div>
+
+      <div class="ReGTForm">
+        <van-form @submit="onSubmit">
+          <van-field
+            v-model="username"
+            name="用户名"
+            left-icon="manager-o"
+            placeholder="请输入名称"
+            :rules="[{ required: true, message: '请填写用户名' }]"
+          />
+          <van-field
+            v-model="password"
+            type="password"
+            name="密码"
+            left-icon="phone-o"
+            placeholder="请输入手机号"
+            :rules="[{ required: true, message: '请填写密码' }]"
+          />
+          <div class="validation">
+            <div class="verify">
+              <van-cell-group>
+                <van-field
+                  left-icon="sign"
+                  v-model="value"
+                  placeholder="请输入验证码"
+                />
+              </van-cell-group>
+            </div>
+            <div class="obtain">
+              获取验证码
+            </div>
+          </div>
+          <div class="privacy">
+            <div class="pr-vay">
+              <van-icon name="checked" color="#0D8470" />
+            </div>
+            <div class="reading">请认真阅读 <span>《隐私政策》</span></div>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <van-button round block type="info" native-type="submit">
+              注册
+            </van-button>
+          </div>
+        </van-form>
+      </div>
+
   </div>
 </template>
 
 <script>
+  import { Toast } from 'vant';
 export default {
   props: [],
   data() {
     return {
       register: "注册",
       username: "",
-      password: ""
+      password: "",
+      value:""
+
+
     };
   },
   computed: {},
@@ -69,6 +76,7 @@ export default {
   created() {},
 
   methods: {
+
     onSubmit(values) {
       console.log("submit", values);
     }
@@ -100,6 +108,7 @@ export default {
 }
 .ReGTForm {
   padding: 0.8rem;
+  margin-top: 1rem;
   .validation {
     display: flex;
     justify-content: space-between;

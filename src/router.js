@@ -2,6 +2,13 @@ import VueRouter from 'vue-router'
 
 const Main = () =>
   import(/* webpackChunkName: "main" */ './pages/main/index.vue')
+const login = () =>
+  import(/* webpackChunkName: "main" */ './pages/login/index.vue')
+const At_bottom = () =>
+  import(/* webpackChunkName: "main" */ './pages/At_bottom/index.vue')
+const product_details = () =>
+  import(/* webpackChunkName: "main" */ './pages/product_details/index.vue')
+
 const CreateAddress = () =>
   import(/* webpackChunkName: "address" */ './pages/create_address/index.vue')
 const AddressList = () =>
@@ -28,6 +35,26 @@ export default new VueRouter({
       component: Main,
       meta: {
         title: '首页',
+      },
+    },{
+      path: '/login',
+      component:login,
+      meta: {
+        title: '登录',
+      },
+    },
+    {
+      path: '/At_bottom',
+      component:At_bottom,
+      meta: {
+        title: '商品',
+      },
+    },
+    {
+      path: '/product_details',
+      component:product_details,
+      meta: {
+        title: '商品详情',
       },
     },
     {

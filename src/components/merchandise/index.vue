@@ -6,6 +6,15 @@
       </van-cell-group>
     </div>
 
+
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+
+      <van-list
+        v-model="isUpLoading"
+        :finished="upFinished"
+        @load="onLoad"
+        :offset="offset"
+      >
     <div v-for="(item,index) in datalistAD" :key="index" class="commodity">
       <!--商品图片-->
       <div class="comdiyt">
@@ -47,10 +56,18 @@
     </div>
 
 
+
+      </van-list>
+    </van-pull-refresh>
+
+
+
   </div>
 </template>
 
 <script>
+
+  import { Toast } from 'vant';
   export default {
     name: "index",
     data() {
@@ -91,9 +108,59 @@
             population: 5689,
             view_details: "查看详情"
           }
-        ]
+        ],
+        datalist:['a','b','c','d','e','f','g','h','j','k','l','y'],//自己定义的数组，里面存放数据，用于v-for循环
+        datacontent:[], //空数组，用来储存循环出来的内容，因为没有造假数据，所以就反复循环这个数组里的内容了
+        isLoading: false,//下拉刷新
+        isUpLoading:false,//下拉加载
+        upFinished:false,
+        offset:100,
 
       }
+    },
+    methods:{
+      onRefresh() { // 下拉调用此函数
+        setTimeout(() => {
+          this.$toast('刷新成功');  //弹出
+          this.isLoading = false;
+        }, 500);
+      },
+      onLoad () { // 上拉调用此函数
+        setTimeout(() => {
+          this.$toast('加载成功');//弹出
+          this.isUpLoading = false;
+          let dataa = this.datalist
+          for (var i = 1; i < dataa.length; i++) {
+            this.datacontent.push(dataa[i]) // 上拉时循环出来这个数组的三条内容，放入datacontent这个数组里，那样就一直拉一直加
+            console.log(this.datacontent)
+      }
+        }, 500);
+
+        // 加载完成时底部提示加载完成，禁止上拉加载。延迟器是为了避免和加载中同时执行
+
+
+        setTimeout(() => {
+
+          if (this.datacontent.length >=5) {
+
+            this.upFinished = true;
+
+          } else {
+
+            this.upFinished = false;
+
+          }
+
+        }, 1000);
+
+      },
+
+
+
+    },
+    mounted() {
+
+
     }
   }
 </script>
@@ -160,6 +227,7 @@
               .Open_group {
                 width: 55%;
                 height: 1rem;
+                line-height: 0.8rem;
                 border: solid 1px #F4A41F;
                 font-size: 0.1rem;
                 text-align: center;
@@ -173,6 +241,7 @@
               color: #fff;
               border-radius: 0.7rem;
               background: #0D8470;
+              line-height: 1.2rem;
             }
           }
 
